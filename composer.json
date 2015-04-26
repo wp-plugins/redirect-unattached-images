@@ -1,0 +1,16 @@
+{
+  "name": "wpsitecare/redirect-unattached-images",
+  "description": "Redirect attachment pages for all unattached images to the current site's home page.",
+  "type": "wordpress-plugin",
+  "homepage": "http://www.wpsitecare.com",
+  "authors": [
+      {
+          "name": "Robert Neu",
+          "email": "rob@wpsitecare.com",
+          "homepage": "http://robneu.com"
+      }
+  ],
+  "require": {
+      "composer/installers": "~1.0"
+  }
+}
