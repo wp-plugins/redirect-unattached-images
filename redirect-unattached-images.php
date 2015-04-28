@@ -3,7 +3,7 @@
  * Plugin Name:  Redirect Unattached Images
  * Plugin URI:   http://robneu.com/redirect-unattached-images/
  * Description:  Redirect attachment pages for all unattached images to the current site's home page.
- * Version:      0.1.0
+ * Version:      0.1.1
  * Author:       WP Site Care
  * Author URI:   http://www.wpsitecare.com
  * License:      GPL-2.0+
@@ -33,12 +33,16 @@ add_action( 'template_redirect', 'sitecare_redirect_unattached_images' );
  * @return void
  */
 function sitecare_redirect_unattached_images() {
-	$parent = get_queried_object()->post_parent;
-	if ( is_attachment() && empty( $parent ) ) {
-		wp_safe_redirect(
-			esc_url_raw( apply_filters( 'sitecare_redirect_unattached_images', get_home_url() ) ),
-			301
-		);
-		exit;
+	if ( ! is_attachment() ) {
+		return;
 	}
+	$parent = get_queried_object()->post_parent;
+	if ( ! empty( $parent ) ) {
+		return;
+	}
+	wp_safe_redirect(
+		esc_url_raw( apply_filters( 'sitecare_redirect_unattached_images', get_home_url() ) ),
+		301
+	);
+	exit;
 }
